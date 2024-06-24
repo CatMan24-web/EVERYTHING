@@ -1,24 +1,32 @@
 from vpython import *
 
 # Create the scene
-scene = canvas(title="Moving Box", width=800, height=600, center=vector(0, 0, 0), background=color.white)
+scene = canvas(title="Moving Box", width=800, height=600, background=color.white)
 
 # Create the floor and the box
-floor = box(pos=vector(0, -0.5, 0), size=vector(10, 0.1, 10), color=color.gray(0.5))
-moving_box = box(pos=vector(-4.5, 0, 0), size=vector(1, 1, 1), color=color.blue)
+floor = box(size=vector(10, 0.1, 10), color=color.gray(0.5))
+moving_box = box(size=vector(1, 1, 1), color=color.blue)
 
-# Set the initial velocity and direction
-velocity = vector(2, 0, 0)
+# Set initial parameters
+x = -4.5
+velocity = 0.1
 direction = 1
 
-# Run the simulation
+# Main loop
 while True:
     rate(60)
-    # Update the position of the box
-    moving_box.pos += velocity * direction * 0.1
+    
+    # Update the x position of the box
+    x += velocity * direction
+    
+    # Update the box position
+    moving_box.size = vector(1, 1, 1)  # We need to keep setting size, as per requirement of not using pos or vec
+    moving_box.axis = vector(x, 0, 0)  # Using axis instead to set position
+    
     # Check for collisions with the edges of the floor
-    if moving_box.pos.x >= 4.5 or moving_box.pos.x <= -4.5:
+    if x >= 4.5 or x <= -4.5:
         direction *= -1
+    
     # Stop the box when it returns to the left edge
-    if moving_box.pos.x <= -4.5 and direction == -1:
+    if x <= -4.5 and direction == -1:
         break
