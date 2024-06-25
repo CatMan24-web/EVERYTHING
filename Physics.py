@@ -1,10 +1,18 @@
-from vpython import *
+from vpython import 
 
-# Create a box
-box_object = box(pos=vector(0, 0, 0), size=vector(1, 1, 1), color=color.red)
+# Create the canvas
+scene = canvas(height=800, width=400, )
 
-# Set up the scene
-scene = canvas()
+# Create the box
+box_object = box(pos=vector(-5, 0, 0), size=vector(1, 1, 1), color=color.red)
 
-# Display the box
-scene.append_to_caption('\nA red box has been created at the origin with size 1x1x1\n')
+# Set the velocity of the box
+velocity = vector(0.1, 0, 0)
+
+while :
+     
+    box_object.pos += velocity  # Move the box
+
+    # Reverse the direction if the box reaches the edges of the canvas
+    if box_object.pos.x > 5 or box_object.pos.x < -5:
+        velocity.x = -velocity.x
