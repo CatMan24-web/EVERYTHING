@@ -1,20 +1,20 @@
 from vpython import *
 
 # Create the scene
-scene = canvas(title="Moving Box", width=800, height=600, background=color.white)
+scene = canvas(title="Moving Box", width=800, height=600, background=color.black)
 
 # Create the floor and the box
-floor = box(size=vector(10, 0.1, 10), color=color.gray(0.5))
-moving_box = box(size=vector(1, 1, 1), color=color.blue)
+floor = box(size=vector(10, 0.1, 10), color=color.white)
+moving_box = box(size=vector(1, 1, 1), color=color.white)
 
-# Set initial parameters
+
 x = -4.5
 velocity = 0.1
-direction = 1
+direction = -1
 
-# Main loop
+
 while True:
-    rate(60)
+    rate(1000)
     
     # Update the x position of the box
     x += velocity * direction
