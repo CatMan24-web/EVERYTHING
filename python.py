@@ -10,11 +10,11 @@ moving_box = box(size=vector(1, 1, 1), color=color.white)
 
 x = -4.5
 velocity = 0.1
-direction = -1
+direction = 1
 
 
 while True:
-    rate(1000)
+    rate(60)
     
     # Update the x position of the box
     x += velocity * direction
